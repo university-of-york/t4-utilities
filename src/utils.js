@@ -71,11 +71,11 @@
   /**
    * Function to process the T4 Tag that is provided as a parameter.
    *
-   * @param t4Tag       The T4 Tag to be processed
-   * @param mySection   The Section to process the tag within (defaults to "section", i.e. the one you're calling from)
-   * @param myContent   The Content to process the tag within (defaults to "content", i.e. the one you're calling from)
+   * @param {string} t4Tag       The T4 Tag to be processed
+   * @param {string} mySection   The Section to process the tag within (defaults to "section", i.e. the one you're calling from)
+   * @param {string} myContent   The Content to process the tag within (defaults to "content", i.e. the one you're calling from)
    *
-   * @return    The result of the processed tag.
+   * @returns {string} The result of the processed tag.
    */
   processTags: function (t4Tag) {
     var myContent = content || null;
@@ -85,9 +85,9 @@
   /**
    * Render content using a different content layout
    *
-   * @param contentLayout   The content layout to use
+   * @param {string} contentLayout The content layout to use
    *
-   * @return    Markup
+   * @returns {string} The generated markup
    */
   renderLayout: function (contentLayout) {
 
@@ -111,9 +111,9 @@
   /**
    * Function to list all of the available properties of an object
    *
-   * @param myObject  The object to get information about
+   * @param {Object} myObject The object to get information about
    *
-   * @return   A list of all object information
+   * @returns {string} A list of all object information
    */
   viewObjectProperties: function (myObject) {
     var output = "<pre>";
@@ -128,7 +128,7 @@
    * Function to find out if current content is on a responsive page
    * TO DO: find the group it belongs to instead of Page Layout ID
    *
-   * @return true or false
+   * @returns {boolean}
    *
    */
   isResponsivePage: function() {
@@ -154,8 +154,7 @@
   /**
    * Function to find out if current content is first or last of its type
    *
-   * @return Object { isFirst: Boolean, isLast: Boolean }
-   * @return false if opts is not complete
+   * @returns {(object|boolean)} false if opts is not complete, or object like { isFirst: Boolean, isLast: Boolean }
    *
    */
   firstOrLast: function(onComplete) {
@@ -275,11 +274,11 @@
   /**
    * Get a variant according to opts, or create one if it doesn't exist
    *
-   * @param opts Options object, containing
-   *             contentName: the name of the Content Element with the image
-   *             variantName: the name of the variant
+   * @param {Object} opts Options object, containing
+   *                      contentName: the name of the Content Element with the image
+   *                      variantName: the name of the variant
    *
-   * @return variant id if it exists, false if not
+   * @returns {(string|boolean)} variant id if it exists, false if not
    *
    */
   getVariant: function(opts) {
@@ -329,11 +328,11 @@
   /**
    * Create a variant using the set parameters
    *
-   * @param opts Options object, containing
-   *             mediaID:
-   *             size:
+   * @param {Object[]} opts Options object.
+   * @param {string} opts[].mediaID The ID of the media item to use
+   * @param {string} opts[].size The size of the image
    *
-   * @return true if varient is created, false if not
+   * @returns {boolean} true if variant is created, false if not
    *
    */
   createVariant: function(opts) {
@@ -343,9 +342,9 @@
   /**
    * Function to make filename from URL
    *
-   * @param url The URL to convert to a string
+   * @param {string} url The URL to convert to a string
    *
-   * @return A filename string
+   * @returns {string} A filename string
    *
    */
   makeFilename: function(url) {
@@ -355,19 +354,16 @@
     return url;
   },
 
-
   /*
    * Get fee data for a course
-   * @param opts Options object, containing:
-   *   "department"
-   *   "title"
-   *   "level"
-   *   "award"
-   *   "year"
+   * @param {Object[]} opts Options object.
+   * @param {string} opts[].title The course title
+   * @param {string} opts[].level The course level (undergraduate or postgraduate)
+   * @param {string} opts[].award The qualification awarded at the end of the course
+   * @param {string} opts[].year  The start year
+   * @param {string} onComplete Function to run when URL has been fetched
    *
-   * @param onComplete Function to run when URL has been fetched
-   *
-   * @return object { ukeu (String), international (String) }
+   * @returns {Object} { ukeu (String), international (String) }
    */
   getFeeData: function(opts, onComplete) {
 
@@ -504,10 +500,10 @@
   /**
    * NEW Function for getting external files
    *
-   * @param url The URL to fetch
-   * @param onComplete The function to run when finished
+   * @param {string} url The URL to fetch
+   * @param {string} onComplete The function to run when finished
    *
-   * @return True if file contents returned, false otherwise
+   * @returns True if file contents returned, false otherwise
    *
    */
   fetchNew: function(url, onComplete) {
@@ -616,9 +612,9 @@
   /**
    * Function for getting external files
    *
-   * @param url The URL to fetch
+   * @param {string} url The URL to fetch
    *
-   * @return A string containing the file's contents
+   * @returns {string} A string containing the file's contents
    *
    */
   fetch: function(url) {
@@ -641,9 +637,9 @@
   /**
    * Function for getting external JSON files
    *
-   * @param url The URL to fetch
+   * @param {string} url The URL to fetch
    *
-   * @return A JSON object
+   * @returns {Object} A JSON object
    *
    */
   fetchJSON: function(url) {
@@ -655,10 +651,10 @@
   /**
    * Function for getting author details from ID
    *
-   * @param authorID     ID of tyhe author
-   * @param onComplete   Function to run on completion. Takes categoryId as argument.
+   * @param {string} authorID     ID of the author
+   * @param {string} onComplete   Function to run on completion. Takes categoryId as argument.
    *
-   * @return Author object or false if ID doesn't match an author
+   * @returns {(Object|boolean)} Author object or false if ID doesn't match an author
    *
    */
   getAuthor: function(authorID, onComplete) {
@@ -682,10 +678,10 @@
   /**
    * Function for getting category ID from name
    *
-   * @param categoryName The category name
-   * @param onComplete   Function to run on completion. Takes categoryId as argument.
+   * @param {string} categoryName The category name
+   * @param {string} onComplete   Function to run on completion. Takes categoryId as argument.
    *
-   * @return True
+   * @returns {boolean} True if it runs successfully
    *
    */
   getCategoryID: function(categoryName, onComplete) {
@@ -728,10 +724,10 @@
   /**
    * Function for querying WP API
    *
-   * @param options    Options object
-   * @param onComplete Function to run on completion. Takes postId as argument.
+   * @param {Object[]} options    Options object
+   * @param {string}   onComplete Function to run on completion. Takes postId as argument.
    *
-   * @return True
+   * @returns {boolean} True if it runs successfully
    *
    */
   fetchWP: function(options, onComplete) {
@@ -763,10 +759,10 @@
   /**
    * Function for getting ID of blog post from HTML content
    *
-   * @param postURL The URL of the post, or an ID
-   * @param onComplete Function to run on completion. Takes postId as argument.
+   * @param {string} postURL    The URL of the post, or an ID
+   * @param {string} onComplete Function to run on completion. Takes postId as argument.
    *
-   * @return True
+   * @returns {boolean} True if it runs successfully
    *
    */
   getPostId: function(postURL, onComplete) {
@@ -818,9 +814,9 @@
   /**
    * Function to get human-readable date from date string
    *
-   * @param datestring A date string e.g. 2015-12-02T12:25:15+00:00
+   * @param {string} datestring A date string e.g. 2015-12-02T12:25:15+00:00
    *
-   * @returns String A human-readable date e.g. 2 December 2015
+   * @returns {string} A human-readable date e.g. 2 December 2015
    */
   getDate: function(datestring) {
 
@@ -851,9 +847,9 @@
     /**
      * Convert a JSON object to a string.
      *
-     * @param   input   The JSON object.
+     * @param {string} input The JSON object.
      *
-     * @return  The string representation of the json object.
+     * @returns {string} The string representation of the json object.
      */
     stringify: function (input) {
       var json = "";
@@ -875,7 +871,7 @@
      * @param   name    The name.
      * @param   value   The value.
      *
-     * @return  A stringified JSON element.
+     * @returns {string} A stringified JSON element.
      */
     toNameValuePair: function (name, value) {
       return "\"" + this.escapeString(name) + "\": " + ((value == "[object Object]") ? this.stringify(value) : ("\"" + this.escapeString(value)) + "\""); //eslint-disable-line eqeqeq
@@ -886,7 +882,7 @@
      *
      * @param   input The string to be escaped.
      *
-     * @return  The JSON escaped version of the input string.
+     * @returns The JSON escaped version of the input string.
      */
     escapeString: function (input) {
       return org.apache.commons.lang.StringEscapeUtils.escapeJava(input);
@@ -904,7 +900,7 @@
      * @param   input   The string to be truncated.
      * @param   length  The length that the string should be truncated to.
      *
-     * @return  The truncated string.
+     * @returns The truncated string.
      */
     truncate: function (input, length) {
       if(input.length() <= length) {
@@ -925,7 +921,7 @@
      *
      * @param   The media id.
      *
-     * @return  The media.
+     * @returns The media.
      */
     getMedia: function (mediaId) {
       if(this.base.t4.version().startsWith("7")) {
@@ -941,7 +937,7 @@
      *
      * @param   media   The piece of media to get the image dimensions of.
 
-     * @return  The image dimensions as an array of numbers [ width | height ]
+     * @returns The image dimensions as an array of numbers [ width | height ]
      */
     getMediaDimensions: function (media) {
       if (typeof this.base === "undefined") {
@@ -960,7 +956,7 @@
      *
      * @param   mediaId   The id of the media to get the variants of.
      *
-     * @return  An array of the media variant ids.
+     * @returns An array of the media variant ids.
      */
     getMediaVariants: function (mediaId) {
       return com.terminalfour.media.MediaManager.getMediaVariants(dbStatement.getConnection(), mediaId, language);
@@ -984,7 +980,7 @@
      * @param   content   The piece of content that contains the element.
      * @param   element   The element within the content that contains the image.
 
-     * @return  The image dimensions as an array of numbers [ width | height ]
+     * @returns The image dimensions as an array of numbers [ width | height ]
      */
     getImageDimensions: function (content, element) {
       return content.get(element).getImageDimensions();
@@ -1001,7 +997,7 @@
      *
      * @param   array   The array to get the minimum value from.
      *
-     * @return  The minimum value from the array.
+     * @returns The minimum value from the array.
      */
     min: function (array) {
       return Math.min.apply(Math, array);
@@ -1012,7 +1008,7 @@
      *
      * @param   array   The array to get the maximum value from.
      *
-     * @return  The maximum value from the array.
+     * @returns The maximum value from the array.
      */
     max: function (array) {
       return Math.max.apply(Math, array);
