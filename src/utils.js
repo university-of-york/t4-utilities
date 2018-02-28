@@ -472,8 +472,11 @@
 
       if (data == '') data = '{ "rows": [] }';
       var json = JSON.parse(data);
+      var jsonRowLength = json.rows.length;
+      var i = 0;
 
-      for each(var row in json.rows) {
+      for (;i < jsonRowLength; i++) {
+        var row = json.rows[i];
         var o = {
           "ukeu": row[ukeuColumn].replace('Â£', '£'),
           "international": row[internationalColumn].replace('Â£', '£'),
