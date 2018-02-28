@@ -117,7 +117,9 @@
 
   /**
    * Function to find out if current content is on a responsive page
-   * TO DO: find the group it belongs to instead of Page Layout ID
+   * <p>
+   * <b>TO DO:</b> find the group it belongs to instead of Page Layout ID
+   * </p>
    * @returns {boolean}
    */
   isResponsivePage: function() {
@@ -478,7 +480,7 @@
    * NEW Function for getting external files
    * @param {string} url The URL to fetch
    * @param {string} onComplete The function to run when finished
-   * @returns True if file contents returned, false otherwise
+   * @returns {boolean} True if file contents returned, false otherwise
    */
   fetchNew: function(url, onComplete) {
 
@@ -831,7 +833,7 @@
     /**
      * Function to properly escape a string for use within JSON.
      * @param {string} input The string to be escaped.
-     * @returns The JSON escaped version of the input string.
+     * @returns {string} The JSON escaped version of the input string.
      */
     escapeString: function (input) {
       return org.apache.commons.lang.StringEscapeUtils.escapeJava(input);
@@ -839,10 +841,10 @@
   },
 
   /**
-   * Utility functions related to strings.
+   * Utility functions related to strings. *REMOVED*
    * @namespace
    */
-  string: {
+  // string: {
 
     /**
      * Function to truncate a string if it's over a specified length.
@@ -850,14 +852,14 @@
      * @param  {string} length  The length that the string should be truncated to.
      * @returns {string} The truncated string.
      */
-    truncate: function (input, length) {
-      if(input.length() <= length) {
-        return input;
-      }
+  //   truncate: function (input, length) {
+  //     if(input.length() <= length) {
+  //       return input;
+  //     }
 
-      return input.substring(0, length);
-    }
-  },
+  //     return input.substring(0, length);
+  //   }
+  // },
 
   /**
    * Utility functionality related to media.
@@ -915,12 +917,12 @@
      * Get the dimensions of an element wthin content that contains an image.
      * <p>
      *  It should be noted that in this case the use of the word image refers to
-     *  any element within the content that contains and image file, as opposed
+     *  any element within the content that contains an image file, as opposed
      *  to the element being of type 'Image'.
      * </p>
      * @param {string} content The piece of content that contains the element.
      * @param {string} element The element within the content that contains the image.
-     * @returns The image dimensions as an array of numbers [ width | height ]
+     * @returns {Array} The image dimensions as an array of numbers [ width | height ]
      */
     getImageDimensions: function (content, element) {
       return content.get(element).getImageDimensions();
@@ -934,16 +936,16 @@
   array: {
     /**
      * Get the mimimum value from an array.
-       * @param {Array} array The array to get the minimum value from.
-       * @returns {number} The minimum value from the array.
+     * @param {Array} array The array to get the minimum value from.
+     * @returns {number} The minimum value from the array.
      */
     min: function (array) {
       return Math.min.apply(Math, array);
     },
     /**
      * Get the maximum value from an array.
-       * @param {Array} array The array to get the maximum value from.
-       * @returns {number} The maximum value from the array.
+     * @param {Array} array The array to get the maximum value from.
+     * @returns {number} The maximum value from the array.
      */
     max: function (array) {
       return Math.max.apply(Math, array);
@@ -953,7 +955,7 @@
   /**
    * Internal initialisation function.
    * <p>
-   *  It should be noted that this function self destructs (deletes) once called.
+   * It should be noted that this function self destructs (deletes) once called.
    * </p>
    */
   init: function (node) {
