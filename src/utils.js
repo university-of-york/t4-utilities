@@ -1,4 +1,3 @@
-/* vim :set autoindent expandtab smarttab shiftwidth=2 softtabstop=2 : */
 /* global dbStatement, publishCache, section, content, language, isPreview, com, org */
 
 /**
@@ -127,7 +126,7 @@
 
   /**
    * Function to find out if current content is on a responsive page
-   * TODO: find the group it belongs to instead of Page Layout ID
+   * TO DO: find the group it belongs to instead of Page Layout ID
    *
    * @return true or false
    *
@@ -170,11 +169,14 @@
     var contentList = com.terminalfour.sitemanager.cache.utils.CSHelper.extractCachedContent (com.terminalfour.sitemanager.cache.utils.CSHelper.removeSpecialContent (section.getContent (publishCache.getChannel(), language, cachedContent)));
 
     var sectionContent = [];
+    var contentLength = contentList.length;
+    var i = 0;
 
-    for each (var con in contentList) {
+    for (;i < contentLength; i++) {
+      var con = contentList[i];
       try {
         sectionContent.push(con);
-        if (sectionContent.length === contentList.length) {
+        if (sectionContent.length === contentLength) {
           // document.write('<!-- Reached end of content -->');
           loopContent();
         }
@@ -470,7 +472,7 @@
 
       if (data == '') data = '{ "rows": [] }';
       var json = JSON.parse(data);
-  
+
       for each(var row in json.rows) {
         var o = {
           "ukeu": row[ukeuColumn].replace('Â£', '£'),
@@ -483,12 +485,12 @@
         if (awardColumn !== false) {
           o["award"] = row[awardColumn];
         }
-  
+
         r.push(o);
       }
-  
-  
-      onComplete(r);      
+
+
+      onComplete(r);
 
     });
 
@@ -521,11 +523,11 @@
     var fileExists = f.exists();
 
     // Get the URL
-    var url = new URL(url);
+    var thisUrl = new URL(url);
 
     try {
 
-      var openConnection = new URL(url).openConnection();
+      var openConnection = new URL(thisUrl).openConnection();
       openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
       var urlStream = openConnection.getInputStream();
 
@@ -544,7 +546,7 @@
 
         if (fileExists == true) {
           //this.console.log('File already exists');
-          // TODO back it up somewhere in case save doesn't work
+          // TO DO back it up somewhere in case save doesn't work
         }
         // create new file in the system
         f.createNewFile();
@@ -559,7 +561,7 @@
         } catch(e3) {
           document.write('<!-- '+e3.message+' -->\n');
           //this.console.log('Could not write to temp file');
-          // TODO reinstate backed up version
+          // TO DO reinstate backed up version
           //return false;
         }
 
@@ -620,8 +622,8 @@
 
     importPackage(java.io, java.net);
 
-    var url = new URL(url);
-    var urlStream = url.getContent();
+    var thisUrl = new URL(url);
+    var urlStream = thisUrl.getContent();
     var reader = new BufferedReader(new InputStreamReader(urlStream, "latin1"));
 
     var output = "";
