@@ -119,6 +119,10 @@
     // If it's preview, do nothing
     // Get todays date in YYYMMDD format
     // Work out what publish it is (0000, 1000, 1230, 1500, 1730, 2000)
+    // Add content and section details to each message
+    message+= '; ';
+    message+= content.get('Name');
+    message+= '; ';
     // Check what type it is, and select the target folder/file appropriately
     var filename = 'test.log';
     var tempDir = java.lang.System.getProperty("java.io.tmpdir");
@@ -133,7 +137,7 @@
 
     this.console.log('fileExists === true is '+(fileExists === true));
 
-    if (fileExists == true) {
+    if (fileExists === true) {
       this.console.log('File already exists');
       // TO DO back it up somewhere in case save doesn't work
     } else {
@@ -149,8 +153,9 @@
 
     //write it
     try {
-      var bw = new BufferedWriter(new FileWriter(f));
+      var bw = new BufferedWriter(new FileWriter(f, true));
       bw.write(message);
+      bw.newLine();
       bw.close();
       this.console.log('File saved successfully to '+f);
       return true;
