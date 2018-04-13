@@ -2,14 +2,13 @@
   "env": {
        "node": true
    },
-   
+
   "plugins": [
     "mocha"
   ],
   "rules": {
-    /* "semi": ["error", "always"],
-    "quotes": ["error", "single"],
-    "mocha/no-exclusive-tests": "error"*/
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"]
   },
 
   "overrides": [

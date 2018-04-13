@@ -30,7 +30,7 @@ module.exports = function(grunt) {
        options: {
            configFile: '.eslintrc.json'
        },
-       src: ['src/**/*.js']
+       src: ['src/**/*.js'] //issue here or in eslintrc.json
     }
   });
 
