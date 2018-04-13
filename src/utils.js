@@ -122,7 +122,8 @@
 
     // Check if it's a publish or a preview
     // If it's preview, do nothing
-    // if (isPreview === true) return false;
+    if (isPreview === true) return false;
+
     // Get todays date in YYYMMDD format
     var zeroPad = function(s) {
       return ("0"+s).slice(-2);
