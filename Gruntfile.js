@@ -1,20 +1,10 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
-    jshint: {
-      options: {
-        force:true,
-        evil:true,
-        moz:true,
-        sub:true,
-        rhino:true
-      },
-      files: ['src/**/*.js']
-    },
-    watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint']
-    },
+    // watch: {
+    //   files: ['<%= jshint.files %>'],
+    //   tasks: ['jshint']
+    // },
     jsdoc: {
       dist: {
         src: ['src/**/*.js', 'package.json', 'README.md'],
@@ -22,13 +12,19 @@ module.exports = function(grunt) {
           destination: 'doc'
         }
       }
+    },
+    eslint: {
+       options: {
+           configFile: '.eslintrc.json'
+       },
+       src: ['src/**/*.js']
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks("gruntify-eslint");
+  // grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jsdoc');
 
-  grunt.registerTask('default', ['jshint', 'jsdoc']);
+  grunt.registerTask('default', ['eslint', 'jsdoc']);
 
 };

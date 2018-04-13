@@ -1,0 +1,18 @@
+{
+  "plugins": [
+    "mocha"
+  ],
+  "rules": {
+    "mocha/no-exclusive-tests": "error"
+  },
+  "overrides": [
+     {
+         "files": [ "test/**/*.js" ],
+         "env": { "mocha": true },
+         "rules": {
+             "max-nested-callbacks": [ "error", 8 ]
+         }
+     }
+ ]
+
+}
