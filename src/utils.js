@@ -19,6 +19,7 @@
      * @param {(string|Object)} textOrObj The string or object to log
      */
     log: function(textOrObj) {
+      //this.base.writeLog("fn", "console.log");
       if (typeof textOrObj === "string") {
         document.write("<script>console.log('" + textOrObj + "');</script>\n");
       }
@@ -28,6 +29,7 @@
      * @param {(string|Object)} textOrObj The string or object to log
      */
     warn: function(textOrObj) {
+      //this.base.writeLog("fn", "console.warn");
       if(typeof textOrObj === "string") {
         document.write("<script>console.warn('" + textOrObj + "');</script>\n");
       }
@@ -37,6 +39,7 @@
      * @param {(string|Object)} textOrObj The string or object to log
      */
     error: function(textOrObj) {
+      //this.base.writeLog("fn", "console.error");
       if(typeof textOrObj === "string") {
         document.write("<script>console.error('" + textOrObj + "');</script>\n");
       }
@@ -54,6 +57,7 @@
      * @returns {string} A static string
      */
     makeListing: function(item) {
+      //this.base.writeLog("fn", "listing.makeListing");
       return "<p>news/event item</p>";
     },
     /**
@@ -73,7 +77,7 @@
    * @returns {string} The result of the processed tag.
    */
   processTags: function (t4Tag) {
-    this.writeLog("fn", "processTags");
+    //this.writeLog("fn", "processTags");
     var myContent = content || null;
     return com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, myContent, language, isPreview, t4Tag);
   },
@@ -84,6 +88,7 @@
    * @returns {string} The generated markup
    */
   renderLayout: function (contentLayout) {
+    //this.writeLog("fn", "renderLayout");
 
     importPackage(com.terminalfour.template);
     importPackage(com.terminalfour.sitemanager);
@@ -134,7 +139,7 @@
     var nowDate = now.getDate();
 
     var datestring = nowYear+zeroPad(nowMonth+1)+zeroPad(nowDate);
-    //this.console.log('datestring is '+datestring);
+    this.console.log('datestring is '+datestring);
 
     // Work out what publish it is (0000, 1000, 1230, 1500, 1730, 2000) and add to datestring
     var publishTimes = [
@@ -151,7 +156,7 @@
         publishstring = zeroPad(t.getHours())+zeroPad(t.getMinutes());
       }
     });
-    //this.console.log('publishstring is '+publishstring);
+    this.console.log('publishstring is '+publishstring);
 
     if (publishstring === false) return false;
 
@@ -170,7 +175,7 @@
     var filename = type+'audit.'+datestring+publishstring+'.log';
     var tempDir = java.lang.System.getProperty("java.io.tmpdir");
     var filepath = tempDir+File.separator+filename;
-    //this.console.log('Filepath is '+filepath);
+    this.console.log('Filepath is '+filepath);
 
     // Create new file
     var f = new File(filepath);
@@ -179,7 +184,7 @@
     var fileExists = f.exists();
 
     if (fileExists === true) {
-      //this.console.log('File already exists');
+      this.console.log('File already exists');
       // TO DO back it up somewhere in case save doesn't work
     } else {
       // Create new file in the system
@@ -187,7 +192,7 @@
         f.createNewFile();
       } catch(e2) {
         document.write('<!-- '+e2.message+' -->\n');
-        //this.console.log('Could not create temp file');
+        this.console.log('Could not create temp file');
         return false;
       }
     }
@@ -211,11 +216,11 @@
       bw.write(message);
       bw.newLine();
       bw.close();
-      //this.console.log('File saved successfully to '+f);
+      this.console.log('File saved successfully to '+f);
       return true;
     } catch(e3) {
       document.write('<!-- '+e3.message+' -->\n');
-      //this.console.log('Could not write to temp file');
+      this.console.log('Could not write to temp file');
       // TO DO reinstate backed up version
       return false;
     }
@@ -231,6 +236,7 @@
    * @returns {string} A list of all object information
    */
   viewObjectProperties: function (myObject) {
+    //this.writeLog("fn", "viewObjectProperties");
     var output = "<pre>";
     for (var prop in myObject) {
       output += "object [" + prop + "] :  " + myObject[prop] + "<br/>";
@@ -247,6 +253,7 @@
    * @returns {boolean}
    */
   isResponsivePage: function() {
+    //this.writeLog("fn", "isResponsivePage");
     // Get the style ID from the URL of the page layout
     // e.g. https://cms.york.ac.uk/terminalfour/SiteManager?ctfn=style&fnno=10&styleid=532966
     var styleIds = [
@@ -271,6 +278,7 @@
    * @returns {(object|boolean)} false if opts is not complete, or object like { isFirst: Boolean, isLast: Boolean }
    */
   firstOrLast: function(onComplete) {
+    //this.writeLog("fn", "firstOrLast");
 
     var contentID = content.getID();
     var contentTemplateID = content.getTemplateID();
@@ -392,6 +400,7 @@
    * @returns {(string|boolean)} variant id if it exists, false if not
    */
   getVariant: function(opts) {
+    //this.writeLog("fn", "getVariant");
 
     if (!opts.contentName) return false;
     if (!opts.variantName) return false;
@@ -443,6 +452,7 @@
    * @returns {boolean} true if variant is created, false if not
    */
   createVariant: function(opts) {
+    //this.writeLog("fn", "createVariant");
     return true;
   },
 
@@ -452,6 +462,7 @@
    * @returns {string} A filename string
    */
   makeFilename: function(url) {
+    //this.writeLog("fn", "makeFilename");
     url = ""+url; // Make sure it's a string!
     url = url.replace(':', '');
     url = url.replace(/\//g, '-');
@@ -469,6 +480,7 @@
    * @returns {Object} { ukeu (String), international (String) }
    */
   getFeeData: function(opts, onComplete) {
+    //this.writeLog("fn", "getFeeData");
 
     // Set up return value
     var r = [];
@@ -607,6 +619,7 @@
    * @returns {boolean} True if file contents returned, false otherwise
    */
   fetchNew: function(url, onComplete) {
+    //this.writeLog("fn", "fetchNew");
 
     importPackage(java.io, java.net);
 
@@ -715,6 +728,7 @@
    * @returns {string} A string containing the file's contents
    */
   fetch: function(url) {
+    //this.writeLog("fn", "fetch");
 
     importPackage(java.io, java.net);
 
@@ -737,6 +751,7 @@
    * @returns {Object} A JSON object
    */
   fetchJSON: function(url) {
+    //this.writeLog("fn", "fetchJSON");
 
     var output = this.fetch(url);
     return output;
@@ -748,7 +763,8 @@
    * @param {string} onComplete   Function to run on completion. Takes categoryId as argument.
    * @returns {(Object|boolean)} Author object or false if ID doesn't match an author
    */
-  getAuthor: function(authorID, onComplete) {
+  getAuthor: function(authorID, onComete) {
+    //this.writeLog("fn", "getAuthor");
 
     var autorDetails = false;
 
@@ -772,7 +788,8 @@
    * @param {string} onComplete   Function to run on completion. Takes categoryId as argument.
    * @returns {boolean} True if it runs successfully
    */
-  getCategoryID: function(categoryName, onComplete) {
+  getCategoryID: function(categoryName, oomplete) {
+    //this.writeLog("fn", "getCategoryID");
 
     var done = false;
 
@@ -815,7 +832,8 @@
    * @param {string}   onComplete Function to run on completion. Takes postId as argument.
    * @returns {boolean} True if it runs successfully
    */
-  fetchWP: function(options, onComplete) {
+  fetchWP: function(options, onCompte) {
+    //this.writeLog("fn", "fetchWP");
 
     var test = options.test || false;
     var type = options.type || 'posts';
@@ -847,7 +865,8 @@
    * @param {string} onComplete Function to run on completion. Takes postId as argument.
    * @returns {boolean} True if it runs successfully
    */
-  getPostId: function(postURL, onComplete) {
+  getPostId: function(postURL, onCompte) {
+    //this.writeLog("fn", "getPostId");
 
     this.fetchNew(postURL, function(postHtml) {
 
@@ -899,6 +918,7 @@
    * @returns {string} A human-readable date e.g. 2 December 2015
    */
   getDate: function(datestring) {
+    //this.writeLog("fn", "getDate");
 
     datestring+= ''; // Make sure it's a string
 
@@ -931,6 +951,7 @@
      * @returns {string} The string representation of the json object.
      */
     stringify: function (input) {
+      //this.base.writeLog("fn", "json.stringify");
       var json = "";
       for (var key in input) {
         if (typeof input[key] !== "function") {
@@ -951,6 +972,7 @@
      * @returns {string} A stringified JSON element.
      */
     toNameValuePair: function (name, value) {
+      //this.base.writeLog("fn", "json.toNameValuePair");
       return "\"" + this.escapeString(name) + "\": " + ((value == "[object Object]") ? this.stringify(value) : ("\"" + this.escapeString(value)) + "\""); //eslint-disable-line eqeqeq
     },
 
@@ -960,6 +982,7 @@
      * @returns {string} The JSON escaped version of the input string.
      */
     escapeString: function (input) {
+      //this.base.writeLog("fn", "json.escapeString");
       return org.apache.commons.lang.StringEscapeUtils.escapeJava(input);
     }
   },
@@ -997,6 +1020,7 @@
      * @returns {Object} The media.
      */
     getMedia: function (mediaId) {
+      //this.base.writeLog("fn", "media.getMedia");
       if(this.base.t4.version().startsWith("7")) {
         return com.terminalfour.publish.utils.PublishUtils.getMedia(dbStatement, publishCache, mediaId, language);
       }
@@ -1011,6 +1035,7 @@
      * @returns {Array} The image dimensions as an array of numbers [ width | height ]
      */
     getMediaDimensions: function (media) {
+      //this.base.writeLog("fn", "media.getMediaDimensions");
       if (typeof this.base === "undefined") {
         throw "this.base not defined. \"init\" method must be called on main utils object.";
       }
@@ -1028,6 +1053,7 @@
      * @returns {Array} An array of the media variant ids.
      */
     getMediaVariants: function (mediaId) {
+      //this.base.writeLog("fn", "media.getMediaVariants");
       return com.terminalfour.media.MediaManager.getMediaVariants(dbStatement.getConnection(), mediaId, language);
     }
   },
@@ -1073,6 +1099,7 @@
      * @returns {string}                  The value of the content element, formatted in the appropriate way (or false, if it fails)
      */
     get: function (element, opts) {
+      //this.base.writeLog("fn", "content.get");
 
       try {
 
@@ -1147,7 +1174,7 @@
 
     },
     /**
-     * Get the dimensions of an element wthin content that contains an image.
+     * Get the dimensions of an element within content that contains an image.
      * <p>
      *  It should be noted that in this case the use of the word image refers to
      *  any element within the content that contains an image file, as opposed
@@ -1158,6 +1185,7 @@
      * @returns {Array} The image dimensions as an array of numbers [ width | height ]
      */
     getImageDimensions: function (content, element) {
+      //this.base.writeLog("fn", "content.getImageDimensions");
       return content.get(element).getImageDimensions();
     }
   },
@@ -1173,6 +1201,7 @@
      * @returns {number} The minimum value from the array.
      */
     min: function (array) {
+      //this.base.writeLog("fn", "array.min");
       return Math.min.apply(Math, array);
     },
     /**
@@ -1181,6 +1210,7 @@
      * @returns {number} The maximum value from the array.
      */
     max: function (array) {
+      //this.base.writeLog("fn", "array.max");
       return Math.max.apply(Math, array);
     }
   },
@@ -1192,6 +1222,8 @@
    * </p>
    */
   init: function (node) {
+    // this.writeLog("fn", "init");
+
     node = node || this;
 
     node.base = this;
