@@ -4,7 +4,7 @@
   "description": "Utilities file for Programmable Layouts at the University of York",
   "main": "utils.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [
     "terminalfour",
@@ -21,7 +21,9 @@
     "grunt": "^1.0.2",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-jsdoc": "^2.2.1",
-    "gruntify-eslint": "^4.0.0"
+    "grunt-mocha-test": "^0.13.3",
+    "gruntify-eslint": "^4.0.0",
+    "mocha": "^5.1.0"
   },
   "dependencies": {}
 }
