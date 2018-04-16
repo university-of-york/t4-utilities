@@ -3,27 +3,10 @@ module.exports = function(grunt) {
   grunt.initConfig({
     concat: {
      dist: {
-       src: ['src/**/*.js'],
+       src: ['src/utils.js','src/init.js'],
        dest: 'dist/utils.js'
      }
    },
-    jsdoc: {
-      dist: {
-        src: ['src/**/*.js', 'package.json', 'README.md'],
-        options: {
-          destination: 'doc'
-        }
-      }
-    },
-    mochaTest: {
-      test: {
-        options: {
-          reporter: 'markdown',
-          captureFile: 'reports/mocha.md', // Optionally capture the reporter output to a file
-        },
-        src: ['test/**/*.js']
-      }
-    },
     eslint: {
        options: {
            configFile: '.eslintrc.json',
@@ -31,6 +14,23 @@ module.exports = function(grunt) {
            format: 'html'
        },
       target: ["dist/utils.js"]
+    },
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'doc',
+          captureFile: 'reports/mocha.html' // Optionally capture the reporter output to a file
+        },
+        src: ['test/**/*.js']
+      }
+    },
+    jsdoc: {
+      dist: {
+        src: ['dist/utils.js', 'package.json', 'README.md'],
+        options: {
+          destination: 'doc'
+        }
+      }
     },
     watch: {
       files: ['dist/utils.js'],
