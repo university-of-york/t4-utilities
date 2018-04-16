@@ -1,10 +1,12 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
-    // watch: {
-    //   files: ['<%= jshint.files %>'],
-    //   tasks: ['jshint']
-    // },
+    concat: {
+     dist: {
+       src: ['src/**/*.js'],
+       dest: 'dist/utils.js'
+     }
+   },
     jsdoc: {
       dist: {
         src: ['src/**/*.js', 'package.json', 'README.md'],
@@ -16,28 +18,31 @@ module.exports = function(grunt) {
     mochaTest: {
       test: {
         options: {
-          reporter: 'spec',
-          captureFile: 'results.txt', // Optionally capture the reporter output to a file
-          quiet: false, // Optionally suppress output to standard out (defaults to false)
-          clearRequireCache: false, // Optionally clear the require cache before running tests (defaults to false)
-          clearCacheFilter: (key) => true, // Optionally defines which files should keep in cache
-          noFail: false // Optionally set to not fail on failed tests (will still fail on other errors)
+          reporter: 'markdown',
+          captureFile: 'reports/mocha.md', // Optionally capture the reporter output to a file
         },
         src: ['test/**/*.js']
       }
     },
     eslint: {
        options: {
-           configFile: '.eslintrc.json'
+           configFile: '.eslintrc.json',
+           outputFile: 'reports/lint.html',
+           format: 'html'
        },
-       src: ['src/**/*.js'] //issue here or in eslintrc.json
+      target: ["dist/utils.js"]
+    },
+    watch: {
+      files: ['dist/utils.js'],
+      tasks: ['eslint', 'mochaTest']
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks("gruntify-eslint");
-  // grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.registerTask('default', ['eslint', 'jsdoc', 'mochaTest']);
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.registerTask('default', ['concat', 'jsdoc', 'mochaTest', 'eslint', 'watch']);
 
 };
