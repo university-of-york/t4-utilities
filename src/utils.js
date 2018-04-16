@@ -1,4 +1,4 @@
-/* global dbStatement, publishCache, section, content, language, isPreview, com, org */
+/* global dbStatement, publishCache, section, content, language, isPreview, com, org, importPackage, java, MediaManager, BufferedReader, BufferedWriter, InputStreamReader, FileWriter */
 
 /**
  * Javascript utilities for use within programmable layouts.
@@ -626,7 +626,7 @@
    */
   getAuthor: function(authorID, onComplete) {
 
-    var autorDetails = false;
+    var authorDetails = false;
 
     // Get author details
     var authorOptions = {
