@@ -18,5 +18,4 @@ init: function (node) {
     delete this.init;
   }
   return this;
-}
-}).init();
+},

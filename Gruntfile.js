@@ -3,8 +3,13 @@ module.exports = function(grunt) {
   grunt.initConfig({
     concat: {
      dist: {
-       src: ['src/utils.js','src/init.js'],
+       src: ['src/**/*.js'],
        dest: 'dist/utils.js'
+     },
+     options: {
+       separator: '\n',
+       banner: '/* global dbStatement, publishCache, section, content, language, isPreview, com, org, importPackage, java, MediaManager, BufferedReader, BufferedWriter, InputStreamReader, FileWriter */\n /**\n * Javascript utilities for use within programmable layouts.\n */\n ({\n',
+       footer: '}).init();\n'
      }
    },
     eslint: {
@@ -32,6 +37,16 @@ module.exports = function(grunt) {
         }
       }
     },
+    uglify: {
+      compress: {
+        files: {
+          'dist/utils.min.js': ['dist/utils.js']
+        },
+        options: {
+          mangle: false
+        }
+      }
+    },
     watch: {
       files: ['dist/utils.js'],
       tasks: ['eslint', 'mochaTest']
@@ -42,7 +57,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("gruntify-eslint");
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('default', ['concat', 'jsdoc', 'mochaTest', 'eslint', 'watch']);
+  grunt.registerTask('default', [ 'uglify', 'concat', 'jsdoc', 'mochaTest', 'eslint', 'watch']);
 
 };
