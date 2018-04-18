@@ -19,7 +19,7 @@
      * @param {(string|Object)} textOrObj The string or object to log
      */
     log: function(textOrObj) {
-      //this.base.writeLog("fn", "console.log");
+      this.base.writeLog("fn", "console.log");
       if (typeof textOrObj === "string") {
         document.write("<script>console.log('" + textOrObj + "');</script>\n");
       }
@@ -29,7 +29,7 @@
      * @param {(string|Object)} textOrObj The string or object to log
      */
     warn: function(textOrObj) {
-      //this.base.writeLog("fn", "console.warn");
+      this.base.writeLog("fn", "console.warn");
       if(typeof textOrObj === "string") {
         document.write("<script>console.warn('" + textOrObj + "');</script>\n");
       }
@@ -39,7 +39,7 @@
      * @param {(string|Object)} textOrObj The string or object to log
      */
     error: function(textOrObj) {
-      //this.base.writeLog("fn", "console.error");
+      this.base.writeLog("fn", "console.error");
       if(typeof textOrObj === "string") {
         document.write("<script>console.error('" + textOrObj + "');</script>\n");
       }
@@ -77,7 +77,7 @@
    * @returns {string} The result of the processed tag.
    */
   processTags: function (t4Tag) {
-    //this.writeLog("fn", "processTags");
+    this.writeLog("fn", "processTags");
     var myContent = content || null;
     return com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, myContent, language, isPreview, t4Tag);
   },
@@ -88,7 +88,7 @@
    * @returns {string} The generated markup
    */
   renderLayout: function (contentLayout) {
-    //this.writeLog("fn", "renderLayout");
+    this.writeLog("fn", "renderLayout");
 
     importPackage(com.terminalfour.template);
     importPackage(com.terminalfour.sitemanager);
@@ -127,7 +127,7 @@
 
     // Check if it's a publish or a preview
     // If it's preview, do nothing
-    if (isPreview === true) return false;
+    //if (isPreview === true) return false;
 
     // Get todays date in YYYMMDD format
     var zeroPad = function(s) {
@@ -139,7 +139,7 @@
     var nowDate = now.getDate();
 
     var datestring = nowYear+zeroPad(nowMonth+1)+zeroPad(nowDate);
-    this.console.log('datestring is '+datestring);
+    //this.console.log('datestring is '+datestring);
 
     // Work out what publish it is (0000, 1000, 1230, 1500, 1730, 2000) and add to datestring
     var publishTimes = [
@@ -156,7 +156,7 @@
         publishstring = zeroPad(t.getHours())+zeroPad(t.getMinutes());
       }
     });
-    this.console.log('publishstring is '+publishstring);
+    //this.console.log('publishstring is '+publishstring);
 
     if (publishstring === false) return false;
 
@@ -175,7 +175,7 @@
     var filename = type+'audit.'+datestring+publishstring+'.log';
     var tempDir = java.lang.System.getProperty("java.io.tmpdir");
     var filepath = tempDir+File.separator+filename;
-    this.console.log('Filepath is '+filepath);
+    //this.console.log('Filepath is '+filepath);
 
     // Create new file
     var f = new File(filepath);
@@ -184,7 +184,7 @@
     var fileExists = f.exists();
 
     if (fileExists === true) {
-      this.console.log('File already exists');
+      //this.console.log('File already exists');
       // TO DO back it up somewhere in case save doesn't work
     } else {
       // Create new file in the system
@@ -192,7 +192,7 @@
         f.createNewFile();
       } catch(e2) {
         document.write('<!-- '+e2.message+' -->\n');
-        this.console.log('Could not create temp file');
+        //this.console.log('Could not create temp file');
         return false;
       }
     }
@@ -204,23 +204,23 @@
         var headerLine;
         switch (type) {
           case "pl":
-            headerLine = "Content Type; Content Layout; Content name (#id); Section name (#id)";
+            headerLine = "Timestamp; Content Type; Content Layout; Content name (#id); Section name (#id)";
             break;
           case "fn":
-            headerLine = "Function name; Content name (#id); Section name (#id)";
+            headerLine = "Timestamp; Function name; Content name (#id); Section name (#id)";
             break;
         }
         bw.write(headerLine);
         bw.newLine();
       }
-      bw.write(message);
+      bw.write(now+"; "+message);
       bw.newLine();
       bw.close();
-      this.console.log('File saved successfully to '+f);
+      //this.console.log('File saved successfully to '+f);
       return true;
     } catch(e3) {
       document.write('<!-- '+e3.message+' -->\n');
-      this.console.log('Could not write to temp file');
+      //this.console.log('Could not write to temp file');
       // TO DO reinstate backed up version
       return false;
     }
@@ -763,7 +763,7 @@
    * @param {string} onComplete   Function to run on completion. Takes categoryId as argument.
    * @returns {(Object|boolean)} Author object or false if ID doesn't match an author
    */
-  getAuthor: function(authorID, onComete) {
+  getAuthor: function(authorID, onComplete) {
     //this.writeLog("fn", "getAuthor");
 
     var autorDetails = false;
@@ -788,7 +788,7 @@
    * @param {string} onComplete   Function to run on completion. Takes categoryId as argument.
    * @returns {boolean} True if it runs successfully
    */
-  getCategoryID: function(categoryName, oomplete) {
+  getCategoryID: function(categoryName, onComplete) {
     //this.writeLog("fn", "getCategoryID");
 
     var done = false;
@@ -832,7 +832,7 @@
    * @param {string}   onComplete Function to run on completion. Takes postId as argument.
    * @returns {boolean} True if it runs successfully
    */
-  fetchWP: function(options, onCompte) {
+  fetchWP: function(options, onComplete) {
     //this.writeLog("fn", "fetchWP");
 
     var test = options.test || false;
@@ -865,7 +865,7 @@
    * @param {string} onComplete Function to run on completion. Takes postId as argument.
    * @returns {boolean} True if it runs successfully
    */
-  getPostId: function(postURL, onCompte) {
+  getPostId: function(postURL, onComplete) {
     //this.writeLog("fn", "getPostId");
 
     this.fetchNew(postURL, function(postHtml) {
@@ -1222,18 +1222,34 @@
    * </p>
    */
   init: function (node) {
-    // this.writeLog("fn", "init");
 
     node = node || this;
 
     node.base = this;
 
     for (var i in node) {
+      //this.writeLog("fn", i+" called in init");
       if ((i !== "base") && (typeof node[i] === "object")) {
         this.init(node[i]);
       }
     }
     if (this === node) {
+      // This should be called once when a PL initialises
+      // Get the content type and content layout
+      importPackage(com.terminalfour.template);
+      importPackage(com.terminalfour.sitemanager);
+      try {
+        var tid = content.getTemplateID();
+        var tfid = content.getTemplateID();
+        var tempManager = com.terminalfour.template.TemplateManager.getManager();
+        var templateName = tempManager.getName(dbStatement, tid);
+        var templateFormat = tempManager.getFormat(dbStatement, tfid);
+        this.console.log("templateName is "+templateName);
+        this.writeLog("pl", "init called by "+templateName+" using "+templateFormat);
+      } catch(e) {
+        this.console.log("Error thrown");
+      }
+
       delete this.init;
     }
     return this;
