@@ -9,7 +9,7 @@ module.exports = function(grunt) {
      options: {
        separator: '\n',
        banner: '/* global dbStatement, publishCache, section, content, language, isPreview, com, org, importPackage, java, MediaManager, BufferedReader, BufferedWriter, InputStreamReader, FileWriter */\n /**\n * Javascript utilities for use within programmable layouts.\n */\n ({\n',
-       footer: '{} }).init();\n'
+       footer: 'emptyFunction: function(){}\n }).init();\n'
      }
    },
     eslint: {
@@ -59,6 +59,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('default', [ 'uglify', 'concat', 'jsdoc', 'mochaTest', 'eslint', 'watch']);
+  grunt.registerTask('default', [ 'concat', 'uglify', 'jsdoc', 'mochaTest', 'eslint', 'watch']);
 
 };
