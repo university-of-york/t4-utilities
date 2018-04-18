@@ -7,9 +7,8 @@ module.exports = function(grunt) {
        dest: 'dist/utils.js'
      },
      options: {
-       separator: '\n',
-       banner: '/* global dbStatement, publishCache, section, content, language, isPreview, com, org, importPackage, java, MediaManager, BufferedReader, BufferedWriter, InputStreamReader, FileWriter */\n /**\n * Javascript utilities for use within programmable layouts.\n */\n ({\n',
-       footer: 'emptyFunction: function(){}\n }).init();\n'
+       banner: grunt.file.read('helper/banner.js'),
+       footer: grunt.file.read('helper/footer.js')
      }
    },
     eslint: {
