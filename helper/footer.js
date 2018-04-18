@@ -1,0 +1,2 @@
+emptyFunction: function(){}
+}).init();
