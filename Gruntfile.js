@@ -9,7 +9,7 @@ module.exports = function(grunt) {
      options: {
        separator: '\n',
        banner: '/* global dbStatement, publishCache, section, content, language, isPreview, com, org, importPackage, java, MediaManager, BufferedReader, BufferedWriter, InputStreamReader, FileWriter */\n /**\n * Javascript utilities for use within programmable layouts.\n */\n ({\n',
-       footer: '}).init();\n'
+       footer: '{} }).init();\n'
      }
    },
     eslint: {
