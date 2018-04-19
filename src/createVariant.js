@@ -6,5 +6,6 @@
  * @returns {boolean} true if variant is created, false if not
  */
 createVariant: function(opts) {
+  if (!opts) return false;
   return true;
 },

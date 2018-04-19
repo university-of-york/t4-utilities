@@ -6,6 +6,7 @@
  * @returns {string} The result of the processed tag.
  */
 processTags: function (t4Tag) {
+  this.writeLog("fn", "processTags");
   var myContent = content || null;
   return com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, myContent, language, isPreview, t4Tag);
 },

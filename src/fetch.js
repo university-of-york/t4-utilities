@@ -13,7 +13,7 @@ fetch: function(url) {
 
   var output = "";
   var line;
-  while (line = reader.readLine()) {
+  while ((line = reader.readLine()) !== null) {
     if (line == null) break;
     output+= line;
   }

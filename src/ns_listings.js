@@ -9,6 +9,7 @@ listing: {
    * @returns {string} A static string
    */
   makeListing: function(item) {
+    if (!item) return false;
     return "<p>news/event item</p>";
   },
   /**

@@ -7,8 +7,6 @@
    */
   getAuthor: function(authorID, onComplete) {
 
-    var authorDetails = false;
-
     // Get author details
     var authorOptions = {
       type: 'users',

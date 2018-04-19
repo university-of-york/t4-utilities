@@ -31,7 +31,7 @@
       var reader = new BufferedReader(new InputStreamReader(urlStream, "latin1"));
 
       var line;
-      while (line = reader.readLine()) {
+      while ((line = reader.readLine()) !== null) {
         if (line == null) break;
         output+= line;
       }
@@ -84,8 +84,9 @@
       try {
         var fr = new FileReader(f);
         var br = new BufferedReader(fr);
-        while((line = br.readLine()) != null) {
-          output+= line;
+        var line2;
+        while((line2 = br.readLine()) !== null) {
+          output+= line2;
         }
         br.close();
         return true;
@@ -95,8 +96,8 @@
         return false;
       }
 
-      output = '{ "error":"Nothing happening" }';
-      return false;
+      // output = '{ "error":"Nothing happening" }';
+      // return false;
 
     } finally {
 
@@ -104,5 +105,6 @@
 
     }
 
-    return true;
+    // return true;
+
   },
