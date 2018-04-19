@@ -6,6 +6,8 @@
    */
   fetchNew: function(url, onComplete) {
 
+    this.writeLog("fn", "fetchNew");
+
     importPackage(java.io, java.net);
 
     var output = "";

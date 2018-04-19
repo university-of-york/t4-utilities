@@ -4,6 +4,8 @@
  */
 firstOrLast: function(onComplete) {
 
+  this.writeLog("fn", "firstOrLast");
+
   var contentID = content.getID();
   var contentTemplateID = content.getTemplateID();
 

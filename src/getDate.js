@@ -5,6 +5,8 @@
    */
   getDate: function(datestring) {
 
+    this.writeLog("fn", "getDate");
+
     datestring+= ''; // Make sure it's a string
 
     var monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

@@ -5,6 +5,8 @@
  */
 fetch: function(url) {
 
+  this.writeLog("fn", "fetch");
+
   importPackage(java.io, java.net);
 
   var thisUrl = new URL(url);

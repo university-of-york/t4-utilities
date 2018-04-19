@@ -7,6 +7,8 @@
    */
   getAuthor: function(authorID, onComplete) {
 
+    this.writeLog("fn", "getAuthor");
+
     // Get author details
     var authorOptions = {
       type: 'users',
@@ -28,6 +30,8 @@
    * @returns {boolean} True if it runs successfully
    */
   getCategoryID: function(categoryName, onComplete) {
+
+    this.writeLog("fn", "getCategoryID");
 
     var done = false;
 
@@ -72,6 +76,8 @@
    */
   fetchWP: function(options, onComplete) {
 
+    this.writeLog("fn", "fetchWP");
+
     var test = options.test || false;
     var type = options.type || 'posts';
     var id = options.id || false;
@@ -103,6 +109,8 @@
    * @returns {boolean} True if it runs successfully
    */
   getPostId: function(postURL, onComplete) {
+
+    this.writeLog("fn", "getPostId");
 
     this.fetchNew(postURL, function(postHtml) {
 

@@ -5,6 +5,9 @@
    * @returns {string} A filename string
    */
   makeFilename: function(url) {
+
+    this.writeLog("fn", "makeFilename");
+
     url = ""+url; // Make sure it's a string!
     url = url.replace(':', '');
     url = url.replace(/\//g, '-');

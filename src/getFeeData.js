@@ -10,6 +10,8 @@
    */
   getFeeData: function(opts, onComplete) {
 
+    this.writeLog("fn", "getFeeData");
+
     // Set up return value
     var r = [];
 

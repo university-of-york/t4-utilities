@@ -5,6 +5,8 @@
  */
 fetchJSON: function(url) {
 
+  this.writeLog("fn", "fetchJSON");
+
   var output = this.fetch(url);
   return output;
 

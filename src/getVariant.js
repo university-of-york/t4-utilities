@@ -7,6 +7,8 @@
  */
 getVariant: function(opts) {
 
+  this.writeLog("fn", "getVariant");
+
   if (!opts.contentName) return false;
   if (!opts.variantName) return false;
 

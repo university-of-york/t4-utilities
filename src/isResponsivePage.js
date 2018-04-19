@@ -6,6 +6,9 @@
  * @returns {boolean}
  */
 isResponsivePage: function() {
+
+  this.writeLog("fn", "isResponsivePage");
+
   // Get the style ID from the URL of the page layout
   // e.g. https://cms.york.ac.uk/terminalfour/SiteManager?ctfn=style&fnno=10&styleid=532966
   var styleIds = [

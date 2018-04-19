@@ -4,6 +4,9 @@
  * @returns {string} A list of all object information
  */
 viewObjectProperties: function (myObject) {
+
+  this.writeLog("fn", "viewObjectProperties");
+
   var output = "<pre>";
   for (var prop in myObject) {
     output += "object [" + prop + "] :  " + myObject[prop] + "<br/>";

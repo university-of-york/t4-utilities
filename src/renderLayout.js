@@ -5,6 +5,8 @@
  */
 renderLayout: function (contentLayout) {
 
+  this.writeLog("fn", "renderLayout");
+
   importPackage(com.terminalfour.template);
   importPackage(com.terminalfour.sitemanager);
   try {
