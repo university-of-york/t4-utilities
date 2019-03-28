@@ -10,6 +10,9 @@
    */
   writeLog: function (type, message) {
 
+    this.viewObjectProperties(section.getOutputURI('en'));
+    var domain = "cmstest.york.ac.uk";
+
     importPackage(java.io, java.net);
 
     // Check the type matches expectations
@@ -18,7 +21,9 @@
 
     // Check if it's a publish or a preview
     // If it's preview, do nothing
-    //if (isPreview === true) return false;
+    if (isPreview === true) return false;
+    // Only run on cmstest
+    if (domain !== "cmstest.york.ac.uk") return false;
 
     // Get todays date in YYYMMDD format
     var zeroPad = function(s) {
